@@ -6,6 +6,6 @@
 class FileLoader
 {
   // TODO: add integration
-}
+};
 
 #endif //FILE_LOADER
