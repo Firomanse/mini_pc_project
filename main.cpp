@@ -24,13 +24,13 @@ int main(int argc, char** argv)
     computer.start();
     break;
   case 2:
-    if (arg1 == "-s" || arg1 == "--start")    { computer.start();      break; }
-    if (arg1 == "-l" || arg1 == "--log")      { computer.log();        break; }
-    if (arg1 == "-d" || arg1 == "--debug")    { computer.debug();      break; }
-    //if (arg1 == "-i" || arg1 == "--inspect")  { computer.inspect();    break; }
-    //if (arg1 == "-r" || arg1 == "--rebuild")  { computer.rebuild();    break; }
-    if (arg1 == "-a" || arg1 == "--assembly") { miasm.interpretCode(); break; }
-    if (arg1 == "-h" || arg1 == "--help")     { help();                break; }
+    if (arg1 == "-s" || arg1 == "--start")    { computer.start();   break; }
+    if (arg1 == "-l" || arg1 == "--log")      { computer.log();     break; }
+    if (arg1 == "-d" || arg1 == "--debug")    { computer.debug();   break; }
+    //if (arg1 == "-i" || arg1 == "--inspect")  { computer.inspect(); break; }
+    //if (arg1 == "-r" || arg1 == "--rebuild")  { computer.rebuild(); break; }
+    if (arg1 == "-a" || arg1 == "--assembly") { miasm.assembly();   break; }
+    if (arg1 == "-h" || arg1 == "--help")     { help();             break; }
 
     std::cout << "mini_pc_project: invalid option \'" << argv[1] << "\'" << '\n'
               << "Try \'./mini_pc_project --help\' for more information" << std::endl;
