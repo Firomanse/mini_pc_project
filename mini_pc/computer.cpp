@@ -4,7 +4,7 @@ Computer::Computer(const std::string& working_dir)
 {
   cpu = new Cpu(4);
   bus = cpu->getBus();
-  ram = new Ram(256);
+  ram = new Ram(256, working_dir);
   gpu = new Gpu(2);
   chipset = new Chipset(2);
 
@@ -14,7 +14,7 @@ Computer::Computer(const std::string& working_dir)
 
   Clock::setSize(256);
 
-  ram->readPreset(working_dir);
+  ram->readPreset("new_program");
 }
 
 void Computer::start()

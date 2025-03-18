@@ -10,12 +10,13 @@
 class Ram : public Component
 {
 public:
-  Ram(const int&);
+  Ram(const int&, const std::string&);
 
   void readPreset(const std::string&);
 
 private:
   PresetLoader* preset_loader;
+  std::string working_dir;
   //array
 };
 
