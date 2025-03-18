@@ -4,7 +4,7 @@ set(INCLUDES
   inc/cluster_set.h
   inc/component.h
   inc/component_base.h
-  inc/file_loader.h
+  inc/preset_loader.h
   inc/read_only_component.h
   inc/write_only_component.h
 )
@@ -16,7 +16,7 @@ set(SOURCES
   src/cluster_set.cpp
   src/component.cpp
   src/component_base.cpp
-  src/file_loader.cpp
+  src/preset_loader.cpp
   src/read_only_component.cpp
   src/write_only_component.cpp
 )
