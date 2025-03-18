@@ -1,4 +1,4 @@
 build/
 *.md
-!info.md
+!info*.md
 mini_pc_project
