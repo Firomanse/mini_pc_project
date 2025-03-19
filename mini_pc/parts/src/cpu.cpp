@@ -105,8 +105,10 @@ bool Cpu::executeCommand(const bool& debugMode)
       return false;
     case 6:
       debug(debugMode, "set");
-      (*buffer)[1] = bus->readFromMemory(Clock::getNextTick());
-      (*buffer)[0] = bus->readFromMemory(Clock::getNextTick());
+      highest_address = bus->readFromMemory(Clock::getNextTick());
+      lowest_address = bus->readFromMemory(Clock::getNextTick());
+      (*buffer)[0] = bus->readFromMemory(combineAddress());
+      (*buffer)[1] = bus->readFromMemory(combineAddress() - 1);
       bus->writeToGpu((*buffer));
       return true;
     case 7:
@@ -157,7 +159,7 @@ bool Cpu::executeCommand(const bool& debugMode)
       lowest_address = bus->readFromMemory(Clock::getNextTick());
       (*buffer) = bus->readFromKeyboard();
       bus->writeToMemory(combineAddress(), (*buffer)[0]);
-      bus->writeToMemory(combineAddress() + 1, (*buffer)[1]);
+      bus->writeToMemory(combineAddress() - 1, (*buffer)[1]);
       return true;
     case 15:
       debug(debugMode, "read");
