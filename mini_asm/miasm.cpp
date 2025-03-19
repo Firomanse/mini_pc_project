@@ -6,9 +6,17 @@ Miasm::Miasm(const std::string& working_dir)
   ram_translator = new RamTranslator(working_dir);
 }
 
+void Miasm::changePath(const std::string& code_file)
+{
+  working_file = code_file;
+}
+
 void Miasm::assembly()
 {
-  inputWorkingFile();
+  if (working_file == "")
+  {
+    inputWorkingFile();
+  }
   interpretCode();
   translateToRam();
 }

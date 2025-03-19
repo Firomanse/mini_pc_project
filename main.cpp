@@ -48,6 +48,11 @@ int main(int argc, char** argv)
       computer.changePath(arg2);
       goto switcher;
     }
+    if (arg1 == "-a" || arg1 == "--assembly")
+    {
+      miasm.changePath(arg2);
+      goto switcher;
+    }
     std::cout << "mini_pc_project: invalid option \'" << argv[1] << "\'" << '\n'
               << "Try \'./mini_pc_project --help\' for more information" << std::endl;
     break;

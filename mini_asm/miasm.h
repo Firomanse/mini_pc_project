@@ -11,13 +11,14 @@ class Miasm
 public:
   Miasm(const std::string&);
 
+  void changePath(const std::string&);
   void assembly();
 
   void inputWorkingFile();
   void interpretCode();
   void translateToRam();
 private:
-  std::string working_file;
+  std::string working_file = "";
   Interpreter* interpreter;
   RamTranslator* ram_translator;
 };
