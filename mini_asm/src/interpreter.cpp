@@ -5,7 +5,40 @@ Interpreter::Interpreter(const std::string& working_dir_)
   working_dir = working_dir_;
 }
 
-std::string Interpreter::toBinaryCode(const std::string& command)
+void Interpreter::toAddresses(const std::string& working_file)
+{
+  std::ifstream input_stream;
+  std::ofstream output_stream;
+
+  input_stream.open(working_dir + "/code/input/" + working_file);
+  output_stream.open(working_dir + "/code/addr/" + working_file);
+
+  if (input_stream.is_open())
+  {
+    std::string command;
+    while (input_stream >> command)
+    {
+      if (command == "addr")
+      {
+        input_stream >> command;
+        for (int i = 0; i < 8; ++i)
+        {
+          output_stream << command[i] << ' ';
+        }
+      }
+      else
+      {
+        output_stream << command << ' ';
+      }
+    }
+  }
+  else
+  {
+    std::cout << "file hasn't been opened" << std::endl;
+  }
+}
+
+std::string Interpreter::changeCommands(const std::string& command)
 {
   if (command == "halt")     { return "0 0 0 0"; }
   if (command == "poweroff") { return "0 0 0 1"; }
@@ -26,12 +59,12 @@ std::string Interpreter::toBinaryCode(const std::string& command)
   return command;
 }
 
-void Interpreter::work(const std::string& working_file)
+void Interpreter::toBinary(const std::string& working_file)
 {
   std::ifstream input_stream;
   std::ofstream output_stream;
 
-  input_stream.open(working_dir + "/code/input/" + working_file);
+  input_stream.open(working_dir + "/code/addr/" + working_file);
   output_stream.open(working_dir + "/code/output/" + working_file);
 
   if (input_stream.is_open())
@@ -39,11 +72,17 @@ void Interpreter::work(const std::string& working_file)
     std::string command;
     while (input_stream >> command)
     {
-      output_stream << toBinaryCode(command) << ' ';
+      output_stream << changeCommands(command) << ' ';
     }
   }
   else
   {
     std::cout << "file hasn't been opened" << std::endl;
   }
+}
+
+void Interpreter::work(const std::string& working_file)
+{
+  toAddresses(working_file);
+  toBinary(working_file);
 }

@@ -9,7 +9,9 @@ class Interpreter
 public:
   Interpreter(const std::string&);
 
-  std::string toBinaryCode(const std::string&);
+  void toAddresses(const std::string&);
+  std::string changeCommands(const std::string&);
+  void toBinary(const std::string&);
   void work(const std::string&);
 
 private:
