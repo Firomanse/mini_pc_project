@@ -16,14 +16,18 @@ int main(int argc, char** argv)
   Miasm miasm(working_dir + "/mini_asm");
 
   std::string arg1 = "";
-  if (argc == 2) { arg1 = std::string(argv[1]); }
+  if (argc > 1) { arg1 = std::string(argv[1]); }
+  std::string arg2 = "";
+  if (argc > 2) { arg2 = std::string(argv[2]); }
 
   switch (argc)
   {
   case 1:
     computer.start();
     break;
+
   case 2:
+  switcher:
     if (arg1 == "-s" || arg1 == "--start")    { computer.start();   break; }
     if (arg1 == "-l" || arg1 == "--log")      { computer.log();     break; }
     if (arg1 == "-d" || arg1 == "--debug")    { computer.debug();   break; }
@@ -32,6 +36,18 @@ int main(int argc, char** argv)
     if (arg1 == "-a" || arg1 == "--assembly") { miasm.assembly();   break; }
     if (arg1 == "-h" || arg1 == "--help")     { help();             break; }
 
+    std::cout << "mini_pc_project: invalid option \'" << argv[1] << "\'" << '\n'
+              << "Try \'./mini_pc_project --help\' for more information" << std::endl;
+    break;
+
+  case 3:
+    if ((arg1 == "-s" || arg1 == "--start")
+     || (arg1 == "-l" || arg1 == "--log")
+     || (arg1 == "-d" || arg1 == "--debug"))
+    {
+      computer.changePath(arg2);
+      goto switcher;
+    }
     std::cout << "mini_pc_project: invalid option \'" << argv[1] << "\'" << '\n'
               << "Try \'./mini_pc_project --help\' for more information" << std::endl;
     break;

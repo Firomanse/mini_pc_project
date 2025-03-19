@@ -14,6 +14,8 @@ class Computer
 public:
   Computer(const std::string&);
 
+  void changePath(const std::string&);
+
   void start(); //only gpu out
   void log(); //commands
   void debug();  //commands and dumps

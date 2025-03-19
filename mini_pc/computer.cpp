@@ -17,6 +17,11 @@ Computer::Computer(const std::string& working_dir)
   ram->readPreset("new_program");
 }
 
+void Computer::changePath(const std::string& preset)
+{
+  ram->readPreset(preset);
+}
+
 void Computer::start()
 {
   bool is_powered_on = true;
