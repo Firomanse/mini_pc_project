@@ -1,0 +1,10 @@
+read 10
+write int
+set 10
+get int
+set int
+poweroff
+label 10
+data 2
+label int
+data 2

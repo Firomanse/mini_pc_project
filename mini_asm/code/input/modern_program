@@ -1,0 +1,9 @@
+read 10
+write int
+set int
+read 20
+write int
+set int
+get int
+set int
+poweroff

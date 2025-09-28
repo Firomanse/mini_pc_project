@@ -1,0 +1,1 @@
+read addr 00010001 write addr 00010011 set addr 00010011 get addr 00010011 set addr 00010011 poweroff 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 

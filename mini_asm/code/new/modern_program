@@ -1,0 +1,6 @@
+read 10 write int set int read 20 write int set int get int set int poweroff label 10
+data 2
+label int
+data 2
+label 20
+data 2
