@@ -21,6 +21,7 @@ public:
   std::string tryToTranslate(const std::string&);
   std::string toAddress(const int&);
 
+  void toNew(const std::string&);
   void toLabels(const std::string&);
   void toAddresses(const std::string&);
   std::string changeCommands(const std::string&);

@@ -72,12 +72,63 @@ std::string Interpreter::toAddress(const int& value)
   return out;
 }
 
-void Interpreter::toLabels(const std::string& working_file)
+void Interpreter::toNew(const std::string& working_file)
 {
   std::ifstream input_stream;
   std::ofstream output_stream;
 
   input_stream.open(working_dir + "/code/input/" + working_file);
+  output_stream.open(working_dir + "/code/new/" + working_file);
+
+  std::vector<DictionaryItem> dictionary;
+
+  if(!input_stream.is_open())
+  {
+    std::cout << "file hasn't been opened" << std::endl;
+  }
+
+  std::string command;
+  while (input_stream >> command)
+  {
+    output_stream << command << ' ';
+
+    if (!isStandardCommand(command))
+    {
+      bool is_skip = false;
+      for (DictionaryItem item : dictionary)
+      {
+        if (item.label == command)
+        {
+          is_skip = true;
+        }
+      }
+
+      if (is_skip)
+      {
+        continue;
+      }
+
+      DictionaryItem new_item;
+      new_item.label = command;
+      new_item.size  = 2;
+
+      dictionary.push_back(new_item);
+    }
+  }
+
+  for (DictionaryItem item : dictionary)
+  {
+    output_stream << "label " << item.label << '\n'
+                  << "data "  << item.size  << '\n';
+  }
+}
+
+void Interpreter::toLabels(const std::string& working_file)
+{
+  std::ifstream input_stream;
+  std::ofstream output_stream;
+
+  input_stream.open(working_dir + "/code/new/" + working_file);
   output_stream.open(working_dir + "/code/dict/" + working_file);
 
   std::vector<DictionaryItem> dictionary;
@@ -241,6 +292,7 @@ void Interpreter::toBinary(const std::string& working_file)
 
 void Interpreter::work(const std::string& working_file)
 {
+  toNew(working_file);
   toLabels(working_file);
   toAddresses(working_file);
   toBinary(working_file);
