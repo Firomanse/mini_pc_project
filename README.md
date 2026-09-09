@@ -1,4 +1,4 @@
-# Mini PC Project
+# Mini PC Project \[[ru](README.ru.md) | en\]
 
 This is a mini-project that emulates a fully software-based computer with a small instruction set.
 
